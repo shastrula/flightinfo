@@ -6,7 +6,7 @@ import javax.persistence.*;
 public class Flight {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "flight_id_seq")
-    @SequenceGenerator(name="flight_id_seq", sequenceName = "FLIGHT_ID_SEQ", allocationSize = 100)
+    @SequenceGenerator(name="flight_id_seq", sequenceName = "FLIGHT_ID_SEQ", allocationSize = 1)
     private Long id;
     private String number;
     private String flightDate;

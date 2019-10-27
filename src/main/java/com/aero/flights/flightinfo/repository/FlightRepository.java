@@ -1,7 +1,6 @@
-package com.aero.flights.flightinfo.services;
+package com.aero.flights.flightinfo.repository;
 
 import com.aero.flights.flightinfo.entity.Flight;
-import org.springframework.data.repository.PagingAndSortingRepository;
 import org.springframework.data.repository.Repository;
 
 import java.util.List;
@@ -14,4 +13,6 @@ public interface FlightRepository extends Repository<Flight, Long> {
     Flight findById(long id);
 
     List<Flight> findAll();
+
+    Flight findByNumber(String number);
 }
