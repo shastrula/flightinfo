@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<con:soapui-project id="6ef6128e-3b4b-4c4b-b846-dba3c601f424" activeEnvironment="Default" name="flights" soapui-version="5.5.0" xmlns:con="http://eviware.com/soapui/config"><con:settings/><con:interface xsi:type="con:WsdlInterface" id="68f75c58-db50-4a72-ac5b-3723bbaec213" wsaVersion="NONE" name="FlightsPortSoap11" type="wsdl" bindingName="{http://flights.aero.com/flightinfo}FlightsPortSoap11" soapVersion="1_1" anonymous="optional" definition="http://localhost:8080/ws/flights.wsdl" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:settings/><con:definitionCache type="TEXT" rootPart="http://localhost:8080/ws/flights.wsdl"><con:part><con:url>http://localhost:8080/ws/flights.wsdl</con:url><con:content><![CDATA[<wsdl:definitions targetNamespace="http://flights.aero.com/flightinfo" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:sch="http://flights.aero.com/flightinfo" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tns="http://flights.aero.com/flightinfo">
+  <wsdl:types>
+    <xs:schema elementFormDefault="qualified" targetNamespace="http://flights.aero.com/flightinfo" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+      <xs:element name="getFlightRequest">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="number" type="xs:string"/>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="getFlightResponse">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="flight" type="tns:flight"/>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:complexType name="flight">
+        <xs:sequence>
+          <xs:element name="id" type="xs:long"/>
+          <xs:element name="number" type="xs:string"/>
+          <xs:element name="flightDate" type="xs:string"/>
+          <xs:element name="fromAirport" type="xs:string"/>
+          <xs:element name="toAirport" type="xs:string"/>
+        </xs:sequence>
+      </xs:complexType>
+    </xs:schema>
+  </wsdl:types>
+  <wsdl:message name="getFlightRequest">
+    <wsdl:part element="tns:getFlightRequest" name="getFlightRequest"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getFlightResponse">
+    <wsdl:part element="tns:getFlightResponse" name="getFlightResponse"></wsdl:part>
+  </wsdl:message>
+  <wsdl:portType name="FlightsPort">
+    <wsdl:operation name="getFlight">
+      <wsdl:input message="tns:getFlightRequest" name="getFlightRequest"></wsdl:input>
+      <wsdl:output message="tns:getFlightResponse" name="getFlightResponse"></wsdl:output>
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="FlightsPortSoap11" type="tns:FlightsPort">
+    <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+    <wsdl:operation name="getFlight">
+      <soap:operation soapAction=""/>
+      <wsdl:input name="getFlightRequest">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="getFlightResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="FlightsPortService">
+    <wsdl:port binding="tns:FlightsPortSoap11" name="FlightsPortSoap11">
+      <soap:address location="http://localhost:8080/ws"/>
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>]]></con:content><con:type>http://schemas.xmlsoap.org/wsdl/</con:type></con:part></con:definitionCache><con:endpoints><con:endpoint>http://localhost:8080/ws</con:endpoint></con:endpoints><con:operation id="ea5f9dd8-460d-4e7d-a5f2-a7709c8096ed" isOneWay="false" action="" name="getFlight" bindingOperationName="getFlight" type="Request-Response" outputName="getFlightResponse" inputName="getFlightRequest" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call id="3c9072eb-8306-4ad1-9a2b-8296d613e34a" name="Request 1"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8080/ws</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:flig="http://flights.aero.com/flightinfo">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <flig:getFlightRequest>
+         <flig:number>A101</flig:number>
+      </flig:getFlightRequest>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://flights.aero.com/flightinfo/FlightsPort/getFlightRequest"/><con:wsrmConfig version="1.2"/></con:call></con:operation></con:interface><con:testSuite id="a272046e-2a8b-4014-84ec-5f43f5648dfd" name="FlightsPortSoap11 TestSuite"><con:settings/><con:runType>SEQUENTIAL</con:runType><con:testCase id="47702d00-3b91-4b69-b79b-039fc7cc4e0d" failOnError="true" failTestCaseOnErrors="true" keepSession="false" maxResults="0" name="getFlight TestCase" searchProperties="true"><con:settings/><con:testStep type="request" id="1ad79bf9-1758-449b-9120-8714451dc287" name="getFlight"><con:settings/><con:config xsi:type="con:RequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:interface>FlightsPortSoap11</con:interface><con:operation>getFlight</con:operation><con:request name="getFlight" id="159c18b6-a943-4f24-990d-2c4abb3a6eed"><con:settings/><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8080/ws</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:flig="http://flights.aero.com/flightinfo">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <flig:getFlightRequest>
+         <flig:number>?</flig:number>
+      </flig:getFlightRequest>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:wsaConfig action="http://flights.aero.com/flightinfo/FlightsPort/getFlightRequest"/></con:request></con:config></con:testStep><con:properties/></con:testCase><con:properties/></con:testSuite><con:properties/><con:wssContainer/><con:oAuth2ProfileContainer/><con:oAuth1ProfileContainer/></con:soapui-project>

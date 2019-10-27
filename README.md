@@ -30,7 +30,9 @@ To add/update flight:
 #How to test SOAP Based Web Services
 
 - Use the following URL to test in SOAPUI `http://localhost:8080/ws/flights.wsdl`
- 
+- Use SOAPUI to load the following [soapui](soapui/flights-soapui-project.xml) 
+- Example [screenshot](soapui/SoapUI-ScreenShot.png)
+
 ### Reference Documentation
 For further reference, please consider the following sections:
 
