@@ -1,0 +1,31 @@
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:tns="http://flights.aero.com/flightinfo"
+           targetNamespace="http://flights.aero.com/flightinfo" elementFormDefault="qualified"
+>
+
+    <xs:element name="getFlightRequest">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="id" type="xs:string"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="getFlightResponse">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="flight" type="tns:flight"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:complexType name="flight">
+        <xs:sequence>
+            <xs:element name="id" type="xs:long"/>
+            <xs:element name="number" type="xs:string"/>
+            <xs:element name="flightDate" type="xs:string"/>
+            <xs:element name="fromAirport" type="xs:string"/>
+            <xs:element name="toAirport" type="xs:string"/>
+        </xs:sequence>
+    </xs:complexType>
+
+</xs:schema>
