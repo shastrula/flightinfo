@@ -1,26 +1,23 @@
 package com.aero.flights.flightinfo.entity;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import java.util.Date;
+import javax.persistence.*;
 
 @Entity
 public class Flight {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "flight_id_seq")
+    @SequenceGenerator(name="flight_id_seq", sequenceName = "FLIGHT_ID_SEQ", allocationSize = 100)
     private Long id;
     private String number;
-    private Date date;
+    private String flightDate;
     private String fromAirport;
     private String toAirport;
 
     protected Flight() {}
 
-    public Flight(String number, Date date, String fromAirport, String toAirport) {
+    public Flight(String number, String flightDate, String fromAirport, String toAirport) {
         this.number = number;
-        this.date = date;
+        this.flightDate = flightDate;
         this.fromAirport = fromAirport;
         this.toAirport = toAirport;
     }
@@ -29,7 +26,7 @@ public class Flight {
     public String toString() {
         return "Id=" + this.id
                + " number=" + this.number
-               + " date=" + this.date
+               + " date=" + this.flightDate
                + " fromAirport=" + this.fromAirport
                + " toAirport=" + this.toAirport;
     }
@@ -50,12 +47,12 @@ public class Flight {
         this.number = number;
     }
 
-    public Date getDate() {
-        return date;
+    public String getFlightDate() {
+        return flightDate;
     }
 
-    public void setDate(Date date) {
-        this.date = date;
+    public void setFlightDate(String flightDate) {
+        this.flightDate = flightDate;
     }
 
     public String getFromAirport() {
