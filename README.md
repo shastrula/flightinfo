@@ -25,7 +25,12 @@ To add/update flight:
         "fromAirport": "DAL",
         "toAirport": "SAN"
 }`
-- Keep the same flight number if you want to modify existing flight or it will create a new flight 
+- Keep the same flight number if you want to modify existing flight or it will create a new flight
+
+#How to test SOAP Based Web Services
+
+- Use the following URL to test in SOAPUI `http://localhost:8080/ws/flights.wsdl`
+ 
 ### Reference Documentation
 For further reference, please consider the following sections:
 
