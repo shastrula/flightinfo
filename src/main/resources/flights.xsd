@@ -5,7 +5,7 @@
     <xs:element name="getFlightRequest">
         <xs:complexType>
             <xs:sequence>
-                <xs:element name="id" type="xs:string"/>
+                <xs:element name="number" type="xs:string"/>
             </xs:sequence>
         </xs:complexType>
     </xs:element>
