@@ -10,13 +10,12 @@ import org.springframework.web.bind.annotation.*;
 import javax.transaction.Transactional;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.concurrent.atomic.AtomicLong;
 
 @RestController
 @Transactional
 @RequestMapping("/flights")
-public class FlightController {
-    private static Logger logger = LoggerFactory.getLogger(FlightController.class);
+public class FlightRestController {
+    private static Logger logger = LoggerFactory.getLogger(FlightRestController.class);
 
     @Autowired
     private FlightRepository flightRepository;
@@ -70,7 +69,7 @@ public class FlightController {
         return flightRepository.findByNumber(number);
     }
 
-    @RequestMapping(value = "/list", method = RequestMethod.GET)
+    @RequestMapping(method = RequestMethod.GET)
     public @ResponseBody
     List<Flight> listAllFlights() {
         List<Flight> flightList = flightRepository.findAll();
