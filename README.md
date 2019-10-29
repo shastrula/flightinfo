@@ -33,6 +33,22 @@ To add/update flight:
 - Use SOAPUI to load the following [soapui](soapui/flights-soapui-project.xml) 
 - Example [screenshot](soapui/SoapUI-ScreenShot.png)
 
+#How to test RabbitMQ Messages
+- Install Rabbit MQ Server using the [installer link](https://www.rabbitmq.com/download.html)
+- Start running rabbitmq server 
+- Login to rabbitmq server using URL: http://localhost:15672/#/queues/%2F/flight-queue
+    _**User/password: guest/guest**_ 
+- You will see the following Queue: [flight queue](rabbitmq/RabbitMQScreenshot.png)
+- Use the following URL to post messages in Postman: `
+http://localhost:8080/message/post`
+- Message example: 
+`{
+	"message":"Testing",
+	"count":1000
+}` 
+Here message is Testing and Number of messages is 1000.
+
+
 ### Reference Documentation
 For further reference, please consider the following sections:
 
