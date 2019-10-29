@@ -9,7 +9,6 @@ import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 
 
 @SpringBootApplication
-@EnableAutoConfiguration
 @EnableJpaRepositories
 
 public class Application extends SpringBootServletInitializer {
