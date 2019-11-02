@@ -1,4 +1,4 @@
-package com.aero.flights.flightinfo.web;
+package com.aero.flights.flightinfo.soap;
 
 
 import com.aero.flights.flightinfo.GetFlightRequest;

@@ -5,22 +5,23 @@ import com.aero.flights.flightinfo.repository.FlightRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 import javax.transaction.Transactional;
 import java.util.ArrayList;
 import java.util.List;
 
-@RestController
+@Controller
 @Transactional
-@RequestMapping("/flights")
-public class FlightRestController {
-    private static Logger logger = LoggerFactory.getLogger(FlightRestController.class);
+public class FlightController {
+    private static final String DEFAULT_MAPPING = "/flight";
+    private static Logger logger = LoggerFactory.getLogger(FlightController.class);
 
     @Autowired
     private FlightRepository flightRepository;
 
-    @RequestMapping(method = RequestMethod.POST)
+    @PostMapping(DEFAULT_MAPPING + "/add")
     public String createFlight(@RequestBody Flight requestFlight) {
         logger.info("Flight=" + requestFlight);
         if(requestFlight!=null) {
@@ -39,26 +40,10 @@ public class FlightRestController {
         return "FAILURE";
     }
 
-    @RequestMapping(value = "/{id}", method = RequestMethod.GET)
+    @GetMapping(DEFAULT_MAPPING + "/{id}")
     public @ResponseBody
     Flight getCustomer(@PathVariable long id) {
         return getFlightById(id);
-    }
-
-
-    @RequestMapping(value = "/{id}", method = RequestMethod.PUT)
-    public @ResponseBody
-    Flight updateFlights(@RequestBody Flight flight, @PathVariable long id) {
-
-        if(flight!=null) {
-            Flight result = getFlightById(id);
-            if(result!=null) {
-                flightRepository.save(flight);
-            }
-
-            return flight;
-        }
-        return null;
     }
 
     private Flight getFlightById(@PathVariable long id) {
@@ -69,7 +54,7 @@ public class FlightRestController {
         return flightRepository.findByNumber(number);
     }
 
-    @RequestMapping(method = RequestMethod.GET)
+    @GetMapping(DEFAULT_MAPPING + "/findAll")
     public @ResponseBody
     List<Flight> listAllFlights() {
         List<Flight> flightList = flightRepository.findAll();

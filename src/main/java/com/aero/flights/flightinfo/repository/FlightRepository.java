@@ -1,12 +1,13 @@
 package com.aero.flights.flightinfo.repository;
 
 import com.aero.flights.flightinfo.entity.Flight;
-import org.springframework.data.repository.Repository;
+import org.springframework.data.repository.CrudRepository;
+import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
-
-public interface FlightRepository extends Repository<Flight, Long> {
+@Repository
+public interface FlightRepository extends CrudRepository<Flight, Long> {
 
     Flight save(Flight flight);
 

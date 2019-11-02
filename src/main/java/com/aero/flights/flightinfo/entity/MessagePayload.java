@@ -1,4 +1,4 @@
-package com.aero.flights.flightinfo.web;
+package com.aero.flights.flightinfo.entity;
 
 public class MessagePayload {
     private int count;

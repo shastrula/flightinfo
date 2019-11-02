@@ -1,5 +1,6 @@
 package com.aero.flights.flightinfo.web;
 
+import com.aero.flights.flightinfo.entity.MessagePayload;
 import com.aero.flights.flightinfo.mq.Receiver;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -7,21 +8,17 @@ import org.springframework.amqp.core.Binding;
 import org.springframework.amqp.core.BindingBuilder;
 import org.springframework.amqp.core.Queue;
 import org.springframework.amqp.core.TopicExchange;
-import org.springframework.amqp.rabbit.connection.ConnectionFactory;
 import org.springframework.amqp.rabbit.core.RabbitTemplate;
-import org.springframework.amqp.rabbit.listener.SimpleMessageListenerContainer;
-import org.springframework.amqp.rabbit.listener.adapter.MessageListenerAdapter;
 import org.springframework.context.annotation.Bean;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
 
 import java.util.concurrent.TimeUnit;
 
-@RestController
-@RequestMapping("/message")
+@Controller
 public class MessageRestController {
+    private static final String DEFAULT_MAPPING = "/message";
     private static Logger logger = LoggerFactory.getLogger(MessageRestController.class);
     private static final boolean SHOULD_RECEIVE = false;
 
@@ -33,7 +30,7 @@ public class MessageRestController {
         this.receiver = receiver;
     }
 
-    @RequestMapping(value = "/post", method = RequestMethod.POST)
+    @PostMapping(DEFAULT_MAPPING + "/post")
     public void sendMessage(@RequestBody MessagePayload messagePayload) {
         logger.info("Sending message:" + messagePayload.getMessage() + " for times:" + messagePayload.getCount());
         for(int i=0;i<messagePayload.getCount();i++) {
