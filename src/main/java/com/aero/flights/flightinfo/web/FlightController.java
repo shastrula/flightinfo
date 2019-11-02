@@ -6,6 +6,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import javax.transaction.Transactional;
@@ -20,6 +21,12 @@ public class FlightController {
 
     @Autowired
     private FlightRepository flightRepository;
+
+    @GetMapping("/")
+    public String showSignUpForm() {
+        return "index";
+    }
+
 
     @PostMapping(DEFAULT_MAPPING + "/add")
     public String createFlight(@RequestBody Flight requestFlight) {
@@ -55,15 +62,15 @@ public class FlightController {
     }
 
     @GetMapping(DEFAULT_MAPPING + "/findAll")
-    public @ResponseBody
-    List<Flight> listAllFlights() {
+    public String listAllFlights(Model model) {
         List<Flight> flightList = flightRepository.findAll();
 
         if(flightList==null) {
-            return new ArrayList<>();
+            flightList = new ArrayList<>();
         }
 
-        return flightList;
+        model.addAttribute("flights", flightList);
+        return "flight/index";
     }
 
 }

@@ -1,0 +1,27 @@
+<div th:switch="${flights}">
+    <h2 th:case="null">No flights yet!</h2>
+    <div th:case="*">
+        <h2>Flights</h2>
+        <table>
+            <thead>
+            <tr>
+                <th>&nbsp</th>
+                <th>Number</th>
+                <th>Flight Date</th>
+                <th>From</th>
+                <th>To</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="flight : ${flights}">
+                <td><a th:href="@{/flight/{id}(id=${flight.id})}">Edit</a></td>
+                <td th:text="${flight.number}"></td>
+                <td th:text="${flight.flightDate}"></td>
+                <td th:text="${flight.fromAirport}"></td>
+                <td th:text="${flight.toAirport}"></td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+    <p><a href="/flight/add">Add a new flight</a></p>
+</div>
