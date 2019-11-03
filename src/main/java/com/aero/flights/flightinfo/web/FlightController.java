@@ -1,6 +1,7 @@
 package com.aero.flights.flightinfo.web;
 
 import com.aero.flights.flightinfo.entity.Flight;
+import com.aero.flights.flightinfo.entity.User;
 import com.aero.flights.flightinfo.repository.FlightRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -55,6 +56,27 @@ public class FlightController {
             flightRepository.save(flight);
             model.addAttribute("flights", flightRepository.findAll());
             return "flight/index";
+    }
+
+    @GetMapping(DEFAULT_MAPPING + "/edit/{id}")
+    public String showUpdateForm(@PathVariable("id") long id, Model model) {
+        Flight flight = flightRepository.findById(id);
+        model.addAttribute("flight", flight);
+        return "flight/update-flight";
+    }
+
+
+    @PostMapping(DEFAULT_MAPPING + "/update/{id}")
+    public String updateFlight(@Valid Flight flight, BindingResult result, Model model) {
+        logger.info("Updating Flight=" + flight);
+
+        if (result.hasErrors()) {
+            return "flight/update-flight";
+        }
+
+        flightRepository.save(flight);
+        model.addAttribute("flights", flightRepository.findAll());
+        return "flight/index";
     }
 
     @GetMapping(DEFAULT_MAPPING + "/{id}")
