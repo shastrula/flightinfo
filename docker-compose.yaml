@@ -1,0 +1,23 @@
+version: '3'
+
+services:
+  app:
+    depends_on:
+      - activemq
+    build:
+      context: .
+      args:
+        JAR_FILE: ./build/libs/flights-0.0.1-SNAPSHOT.jar
+      dockerfile: Dockerfile
+    environment:
+      ACTIVE_MQ_BROKER_URL: tcp://activemq:61616
+    ports:
+      - 9090:9090
+  activemq:
+    image: webcenter/activemq
+    environment:
+      ACTIVEMQ_CONFIG_MINMEMORY: 128
+      ACTIVEMQ_CONFIG_MAXMEMORY: 256
+    ports:
+      - 8161:8161
+      - 9095:61616
