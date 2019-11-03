@@ -22,7 +22,7 @@ public class FlightUpdaterTask {
     @Autowired
     private FlightRestController flightRestController;
 
-    @Scheduled(fixedRate = 15000)
+    @Scheduled(fixedRate = 20000)
     public void reportCurrentTime() {
         log.info("The time is now {}", dateFormat.format(new Date()));
         log.info("Now updating all flights update time");
