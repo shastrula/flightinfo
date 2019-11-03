@@ -5,13 +5,11 @@ import com.aero.flights.flightinfo.repository.FlightRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
 import javax.transaction.Transactional;
-import javax.validation.Valid;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -25,7 +23,7 @@ public class FlightRestController {
     private FlightRepository flightRepository;
 
     @PostMapping(DEFAULT_MAPPING + "/add")
-    public @Valid Flight createFlight(@Valid Flight flight, BindingResult result, Model model) {
+    public @ResponseBody Flight createFlight(@RequestBody Flight flight, BindingResult result) {
         logger.info("Flight=" + flight);
 
         if (result.hasErrors()) {
@@ -45,8 +43,8 @@ public class FlightRestController {
     }
 
 
-    @PostMapping(DEFAULT_MAPPING + "/update/{id}")
-    public @Valid Flight updateFlight(@Valid Flight flight, BindingResult result, Model model) {
+    @PostMapping(DEFAULT_MAPPING + "/update")
+    public @ResponseBody Flight updateFlight(@RequestBody Flight flight, BindingResult result) {
         logger.info("Updating Flight=" + flight);
 
         if (result.hasErrors()) {

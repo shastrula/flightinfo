@@ -1,30 +1,37 @@
 # Getting Started
 
-#How to run Restful Service
+#How to install the application
+
 [Windows]
 `gradlew.bat clean build bootRun` 
 
 [ Linux/MacOS]
 `./gradlew clean build bootRun` 
 
+#How to test UI
+Go to `http://localhost:8080`
+It will show two links: one for User and the other for Flights
+
+#How to run Restful Service
+
 Use postman:
 
 To retrieve all flights: 
 - Set the request to GET 
-- Set URL to `http://localhost:8080/flights/list`
+- Set URL to `http://localhost:8080/flightrest/findAll`
 
 To add/update flight:
 - Set the request to POST
-- Set URL to `http://localhost:8080/flights/`
+- Set URL to `http://localhost:8080/flightrest/update`
 - Go to Body and choose raw and MIME type from text to JSON and enter JSON payload, for example
 
 `{
-        "id": 201,
-        "number": "A106",
-        "flightDate": "20-OCT-2019",
-        "fromAirport": "DAL",
-        "toAirport": "SAN"
-}`
+         "id": 1,
+         "number": "AF101",
+         "flightDate": "10/25/2019",
+         "fromAirport": "DFW",
+         "toAirport": "HOU"
+     }`
 - Keep the same flight number if you want to modify existing flight or it will create a new flight
 
 #How to test SOAP Based Web Services
