@@ -26,12 +26,12 @@ public class MessageSender {
         this.jmsTemplate = new JmsTemplate(connectionFactory);
     }
 
-    public void sendMessage(String queueName, String message) {
+    public void sendMessage(String queueName, Object message) {
         logger.info("sending: " + message);
         jmsTemplate.send(queueName, new MessageCreator() {
             @Override
             public Message createMessage(Session session) throws JMSException {
-                return session.createTextMessage(message);
+                return session.createTextMessage(message.toString());
             }
         });
     }

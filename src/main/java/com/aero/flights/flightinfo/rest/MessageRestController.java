@@ -12,8 +12,8 @@ import java.util.List;
 
 @RestController
 public class MessageRestController {
-    private static final String DEFAULT_MAPPING = "/message";
     private static Logger logger = LoggerFactory.getLogger(MessageRestController.class);
+    private static final String DEFAULT_MAPPING = "/message";
     private static final String queueName = "flight-queue";
 
     @Autowired

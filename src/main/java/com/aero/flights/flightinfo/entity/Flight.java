@@ -5,6 +5,7 @@ import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Pattern;
 
 @Entity
+@EntityListeners(AuditListener.class)
 public class Flight {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "flight_id_seq")
