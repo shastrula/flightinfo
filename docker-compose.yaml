@@ -20,4 +20,4 @@ services:
       ACTIVEMQ_CONFIG_MAXMEMORY: 256
     ports:
       - 8161:8161
-      - 9095:61616
+      - 61616:61616
