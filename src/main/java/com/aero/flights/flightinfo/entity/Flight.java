@@ -83,4 +83,6 @@ public class Flight {
     public void setToAirport(String toAirport) {
         this.toAirport = toAirport;
     }
+
+
 }
