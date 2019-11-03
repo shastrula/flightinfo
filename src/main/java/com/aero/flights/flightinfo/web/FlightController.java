@@ -1,6 +1,7 @@
 package com.aero.flights.flightinfo.web;
 
 import com.aero.flights.flightinfo.entity.Flight;
+import com.aero.flights.flightinfo.rest.FlightRestController;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
