@@ -26,6 +26,7 @@
                 <th>Departure Time</th>
                 <th>Arrival Time</th>
                 <th>Last Updated</th>
+                <th>Last Updated By</th>
             </tr>
             </thead>
             <tbody>
@@ -39,6 +40,7 @@
                 <td th:text="${flight.departTime}"></td>
                 <td th:text="${flight.arrivalTime}"></td>
                 <td th:text="${flight.updated}"></td>
+                <td th:text="${flight.updatedBy}"></td>
             </tr>
             </tbody>
         </table>

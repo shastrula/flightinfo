@@ -47,6 +47,7 @@ public class Flight {
     private String arrivalTime;
 
     private Date updated;
+    private String updatedBy;
 
     public Flight() {
     }
@@ -133,4 +134,11 @@ public class Flight {
         this.updated = updated;
     }
 
+    public String getUpdatedBy() {
+        return updatedBy;
+    }
+
+    public void setUpdatedBy(String updatedBy) {
+        this.updatedBy = updatedBy;
+    }
 }

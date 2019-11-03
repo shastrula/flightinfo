@@ -30,6 +30,7 @@ public class FlightUpdaterTask {
 
         for(Flight flight:flightList) {
             flight.setUpdated(new Date());
+            flight.setUpdatedBy("FlightUpdaterTask");
             flightRestController.updateFlight(flight);
         }
 

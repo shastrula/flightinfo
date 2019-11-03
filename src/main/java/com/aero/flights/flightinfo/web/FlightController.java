@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import javax.transaction.Transactional;
 import javax.validation.Valid;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 @Controller
@@ -67,6 +68,8 @@ public class FlightController {
             return "flight/update-flight";
         }
 
+        flight.setUpdated(new Date());
+        flight.setUpdatedBy("UI");
         flightRestController.updateFlight(flight);
         model.addAttribute("flights", flightRestController.findAll());
         return "flight/index";
