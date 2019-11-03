@@ -1,7 +1,6 @@
 package com.aero.flights.flightinfo.rest;
 
 import com.aero.flights.flightinfo.entity.MessagePayload;
-import com.aero.flights.flightinfo.message.MessageReceiver;
 import com.aero.flights.flightinfo.message.MessageSender;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -20,8 +19,6 @@ public class MessageRestController {
     @Autowired
     private MessageSender messageSender;
 
-    @Autowired
-    private MessageReceiver messageReceiver;
 
     @PostMapping(DEFAULT_MAPPING + "/post")
     public void sendMessage(@RequestBody MessagePayload messagePayload) {
@@ -29,10 +26,6 @@ public class MessageRestController {
         for(int i=0;i<messagePayload.getCount();i++) {
             String payloadMessage = messagePayload.getMessage() + " " + (i+1) + " of " + messagePayload.getCount();
             messageSender.sendMessage(queueName, payloadMessage);
-        }
-
-        if(SHOULD_RECEIVE) {
-                messageReceiver.receiveMessage(queueName);
         }
     }
 
