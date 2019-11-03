@@ -37,10 +37,13 @@ public class FlightSoapEndpoint {
     private com.aero.flights.flightinfo.Flight transformFlightToSoap(Flight flightFromDb) {
         com.aero.flights.flightinfo.Flight flightSoap = new com.aero.flights.flightinfo.Flight();
         flightSoap.setId(flightFromDb.getId());
+        flightSoap.setAirlineCode(flightFromDb.getAirlineCode());
         flightSoap.setNumber(flightFromDb.getNumber());
         flightSoap.setFlightDate(flightFromDb.getFlightDate());
         flightSoap.setFromAirport(flightFromDb.getFromAirport());
         flightSoap.setToAirport(flightFromDb.getToAirport());
+        flightSoap.setDepartTime(flightFromDb.getDepartTime());
+        flightSoap.setArriveTime(flightFromDb.getArrivalTime());
 
         return flightSoap;
     }

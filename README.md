@@ -9,7 +9,7 @@
 `./gradlew clean build bootRun` 
 
 #How to test UI
-Go to `http://localhost:8080`
+Go to `http://localhost:9090`
 It will show two links: one for User and the other for Flights
 
 #How to run Restful Service
@@ -18,11 +18,11 @@ Use postman:
 
 To retrieve all flights: 
 - Set the request to GET 
-- Set URL to `http://localhost:8080/flightrest/findAll`
+- Set URL to `http://localhost:9090/flightrest/findAll`
 
 To add/update flight:
 - Set the request to POST
-- Set URL to `http://localhost:8080/flightrest/update`
+- Set URL to `http://localhost:9090/flightrest/update`
 - Go to Body and choose raw and MIME type from text to JSON and enter JSON payload, for example
 
 `{
@@ -36,7 +36,7 @@ To add/update flight:
 
 #How to test SOAP Based Web Services
 
-- Use the following URL to test in SOAPUI `http://localhost:8080/ws/flights.wsdl`
+- Use the following URL to test in SOAPUI `http://localhost:9090/ws/flights.wsdl`
 - Use SOAPUI to load the following [soapui](soapui/flights-soapui-project.xml) 
 - Example [screenshot](soapui/SoapUI-ScreenShot.png)
 
@@ -47,7 +47,7 @@ To add/update flight:
     _**User/password: guest/guest**_ 
 - You will see the following Queue: [flight queue](rabbitmq/RabbitMQScreenshot.png)
 - Use the following URL to post messages in Postman: `
-http://localhost:8080/message/post`
+http://localhost:9090/message/post`
 - Message example: 
 `{
 	"message":"Testing",
