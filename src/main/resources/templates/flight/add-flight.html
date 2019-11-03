@@ -16,30 +16,46 @@
         <div class="col-md-6">
             <form action="#" th:action="@{/flight/add}" th:object="${flight}" method="post">
                 <div class="row">
-                    <div class="form-group col-md-6">
+                    <div class="form-group col-md-8">
                         <label for="name" class="col-form-label">Flight Number</label>
-                        <input type="text" th:field="*{number}" class="form-control" id="number" placeholder="Number">
+                        <input type="text" th:field="*{number}" class="form-control" id="number" placeholder="Flight Number should follow pattern XX999">
                         <span th:if="${#fields.hasErrors('number')}" th:errors="*{number}" class="text-danger"></span>
                     </div>
-                    <div class="form-group col-md-6">
+                    <div class="form-group col-md-8">
+                        <label for="name" class="col-form-label">Airline Code</label>
+                        <input type="text" th:field="*{airlineCode}" class="form-control" id="airlineCode" placeholder="Airline Code is mandatory (WN|AA|DL|WS|UA)">
+                        <span th:if="${#fields.hasErrors('airlineCode')}" th:errors="*{airlineCode}" class="text-danger"></span>
+                    </div>
+                    <div class="form-group col-md-8">
                         <label for="name" class="col-form-label">Flight Date</label>
-                        <input type="text" th:field="*{flightDate}" class="form-control" id="flightDate" placeholder="Flight Date">
+                        <input type="text" th:field="*{flightDate}" class="form-control" id="flightDate" placeholder="Date should be in the following format (mm/dd/yyyy)">
                         <span th:if="${#fields.hasErrors('flightDate')}" th:errors="*{flightDate}" class="text-danger"></span>
                     </div>
-                    <div class="form-group col-md-6">
+                    <div class="form-group col-md-5">
                         <label for="name" class="col-form-label">From Airport</label>
                         <input type="text" th:field="*{fromAirport}" class="form-control" id="fromAirport" placeholder="From Airport">
                         <span th:if="${#fields.hasErrors('fromAirport')}" th:errors="*{fromAirport}" class="text-danger"></span>
                     </div>
-                    <div class="form-group col-md-6">
+                    <div class="form-group col-md-5">
                         <label for="name" class="col-form-label">To Airport</label>
                         <input type="text" th:field="*{toAirport}" class="form-control" id="toAirport" placeholder="To Airport">
                         <span th:if="${#fields.hasErrors('toAirport')}" th:errors="*{toAirport}" class="text-danger"></span>
                     </div>
+                    <div class="form-group col-md-6">
+                        <label for="name" class="col-form-label">Departure Time</label>
+                        <input type="text" th:field="*{departTime}" class="form-control" id="departTime" placeholder="Time should be in format HH:MM on a 24 hour clock">
+                        <span th:if="${#fields.hasErrors('departTime')}" th:errors="*{departTime}" class="text-danger"></span>
+                    </div>
+                    <div class="form-group col-md-6">
+                        <label for="name" class="col-form-label">Departure Time</label>
+                        <input type="text" th:field="*{arrivalTime}" class="form-control" id="arrivalTime" placeholder="Time should be in format HH:MM on a 24 hour clock">
+                        <span th:if="${#fields.hasErrors('arrivalTime')}" th:errors="*{arrivalTime}" class="text-danger"></span>
+                    </div>
                 </div>
                 <div class="row">
                     <div class="col-md-6 mt-5">
-                        <input type="submit" class="btn btn-primary" value="Add a Flight">
+                        <input type="submit" class="btn btn-primary" value="Add Flight">
+                        <p class="my-5"><a href="/flight/findAll" class="btn btn-secondary"><i class="fas fa-user-plus ml-2">Show All Flights</i></a></p>
                     </div>
                 </div>
             </form>

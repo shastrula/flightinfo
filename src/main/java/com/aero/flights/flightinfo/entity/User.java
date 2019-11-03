@@ -1,9 +1,13 @@
 package com.aero.flights.flightinfo.entity;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
+
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 
 @Entity
+@EntityListeners(AuditListener.class)
 public class User {
 
     @Id
@@ -49,6 +53,11 @@ public class User {
 
     @Override
     public String toString() {
-        return "User{" + "id=" + id + ", name=" + name + ", email=" + email + '}';
+        ObjectMapper mapper = new ObjectMapper();
+        try {
+            return mapper.writeValueAsString(this);
+        } catch (JsonProcessingException e) {
+            throw new RuntimeException(e);
+        }
     }
 }
