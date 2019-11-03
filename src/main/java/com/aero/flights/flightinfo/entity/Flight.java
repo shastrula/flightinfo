@@ -6,6 +6,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Pattern;
+import java.util.Date;
 
 @Entity
 @EntityListeners(AuditListener.class)
@@ -44,6 +45,8 @@ public class Flight {
     @Pattern(message = "Time should be in format HH:MM on a 24 hour clock",
             regexp ="^(2[0-3]|[01]?[0-9]):([0-5]?[0-9])$")
     private String arrivalTime;
+
+    private Date updated;
 
     public Flight() {
     }
@@ -121,4 +124,13 @@ public class Flight {
     public void setArrivalTime(String arrivalTime) {
         this.arrivalTime = arrivalTime;
     }
+
+    public Date getUpdated() {
+        return updated;
+    }
+
+    public void setUpdated(Date updated) {
+        this.updated = updated;
+    }
+
 }
