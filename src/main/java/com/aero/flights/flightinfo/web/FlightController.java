@@ -1,8 +1,6 @@
 package com.aero.flights.flightinfo.web;
 
 import com.aero.flights.flightinfo.entity.Flight;
-import com.aero.flights.flightinfo.entity.User;
-import com.aero.flights.flightinfo.repository.FlightRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,7 +24,7 @@ public class FlightController {
     private static Logger logger = LoggerFactory.getLogger(FlightController.class);
 
     @Autowired
-    private FlightRepository flightRepository;
+    FlightRestController flightRestController;
 
     @GetMapping("/")
     public String showWebSiteIndex() {
@@ -45,22 +43,16 @@ public class FlightController {
         if (result.hasErrors()) {
             return "flight/add-flight";
         }
-            if(flight.getNumber()!=null) {
-                Flight existingFlight = getFlightByNumber(flight.getNumber());
 
-                if(existingFlight!=null) {
-                    flight.setId(existingFlight.getId());
-                }
-            }
+        flightRestController.createFlight(flight);
 
-            flightRepository.save(flight);
-            model.addAttribute("flights", flightRepository.findAll());
-            return "flight/index";
+        model.addAttribute("flights", flightRestController.findAll());
+        return "flight/index";
     }
 
     @GetMapping(DEFAULT_MAPPING + "/edit/{id}")
     public String showUpdateForm(@PathVariable("id") long id, Model model) {
-        Flight flight = flightRepository.findById(id);
+        Flight flight = flightRestController.getFlightById(id);
         model.addAttribute("flight", flight);
         return "flight/update-flight";
     }
@@ -74,8 +66,8 @@ public class FlightController {
             return "flight/update-flight";
         }
 
-        flightRepository.save(flight);
-        model.addAttribute("flights", flightRepository.findAll());
+        flightRestController.updateFlight(flight);
+        model.addAttribute("flights", flightRestController.findAll());
         return "flight/index";
     }
 
@@ -86,16 +78,12 @@ public class FlightController {
     }
 
     private Flight getFlightById(@PathVariable long id) {
-        return flightRepository.findById(id);
-    }
-
-    private Flight getFlightByNumber(@PathVariable String number) {
-        return flightRepository.findByNumber(number);
+        return flightRestController.getFlightById(id);
     }
 
     @GetMapping(DEFAULT_MAPPING + "/findAll")
     public String listAllFlights(Model model) {
-        List<Flight> flightList = flightRepository.findAll();
+        List<Flight> flightList = flightRestController.findAll();
 
         if(flightList==null) {
             flightList = new ArrayList<>();

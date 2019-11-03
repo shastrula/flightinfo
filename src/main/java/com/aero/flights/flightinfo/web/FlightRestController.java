@@ -5,8 +5,6 @@ import com.aero.flights.flightinfo.repository.FlightRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.ui.Model;
-import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
 import javax.transaction.Transactional;
@@ -23,45 +21,33 @@ public class FlightRestController {
     private FlightRepository flightRepository;
 
     @PostMapping(DEFAULT_MAPPING + "/add")
-    public @ResponseBody Flight createFlight(@RequestBody Flight flight, BindingResult result) {
+    public @ResponseBody Flight createFlight(@RequestBody Flight flight) {
         logger.info("Flight=" + flight);
 
-        if (result.hasErrors()) {
-            return null;
-        }
-            if(flight.getNumber()!=null) {
-                Flight existingFlight = getFlightByNumber(flight.getNumber());
+        if(flight.getNumber()!=null) {
+            Flight existingFlight = getFlightByNumber(flight.getNumber());
 
-                if(existingFlight!=null) {
-                    flight.setId(existingFlight.getId());
-                }
+            if(existingFlight!=null) {
+                flight.setId(existingFlight.getId());
             }
+        }
 
-            flightRepository.save(flight);
+        flightRepository.save(flight);
 
-            return flight;
+        return flight;
     }
 
 
     @PostMapping(DEFAULT_MAPPING + "/update")
-    public @ResponseBody Flight updateFlight(@RequestBody Flight flight, BindingResult result) {
+    public @ResponseBody Flight updateFlight(@RequestBody Flight flight) {
         logger.info("Updating Flight=" + flight);
-
-        if (result.hasErrors()) {
-            return null;
-        }
 
         flightRepository.save(flight);
         return flight;
     }
 
     @GetMapping(DEFAULT_MAPPING + "/{id}")
-    public @ResponseBody
-    Flight getCustomer(@PathVariable long id) {
-        return getFlightById(id);
-    }
-
-    private Flight getFlightById(@PathVariable long id) {
+    public @ResponseBody Flight getFlightById(@PathVariable long id) {
         return flightRepository.findById(id);
     }
 
@@ -70,7 +56,7 @@ public class FlightRestController {
     }
 
     @GetMapping(DEFAULT_MAPPING + "/findAll")
-    public List<Flight> listAllFlights(Model model) {
+    public List<Flight> findAll() {
         List<Flight> flightList = flightRepository.findAll();
 
         if(flightList==null) {
