@@ -1,4 +1,4 @@
-package com.aero.flights.flightinfo.web;
+package com.aero.flights.flightinfo.rest;
 
 import com.aero.flights.flightinfo.entity.MessagePayload;
 import com.aero.flights.flightinfo.mq.Receiver;
