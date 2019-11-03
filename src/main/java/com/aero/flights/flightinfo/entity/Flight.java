@@ -1,6 +1,8 @@
 package com.aero.flights.flightinfo.entity;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Pattern;
 
 @Entity
 public class Flight {
@@ -8,9 +10,20 @@ public class Flight {
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "flight_id_seq")
     @SequenceGenerator(name="flight_id_seq", sequenceName = "FLIGHT_ID_SEQ", allocationSize = 1)
     private Long id;
+    @NotBlank(message = "Number is mandatory")
+    @Pattern(message = "Flight Number should follow pattern XX999",
+            regexp = "^([a-zA-Z]+[0-9]+)$"
+        )
     private String number;
+    @NotBlank(message = "Flight Date is mandatory")
+    @Pattern(message = "Date should be in the following format (mm/dd/yyyy)",
+            regexp = "^(1[0-2]|0[1-9])/(3[01]|[12][0-9]|0[1-9])/[0-9]{4}$"
+    )
+    @NotBlank(message = "Flight Date is mandatory")
     private String flightDate;
+    @NotBlank(message = "From Airport is mandatory")
     private String fromAirport;
+    @NotBlank(message = "To Airport is mandatory")
     private String toAirport;
 
     protected Flight() {}
