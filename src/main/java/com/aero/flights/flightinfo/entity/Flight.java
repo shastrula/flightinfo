@@ -16,8 +16,8 @@ public class Flight {
     private Long id;
 
     @NotBlank(message = "Number is mandatory")
-    @Pattern(message = "Flight Number should follow pattern XX999",
-            regexp = "^([a-zA-Z]+[0-9]+)$")
+    @Pattern(message = "Flight Number should follow pattern 999",
+            regexp = "^([0-9]+)$")
     private String number;
 
     @NotBlank(message = "Airline Code is mandatory (WN|AA|DL|WS|UA)")
