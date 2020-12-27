@@ -4,11 +4,9 @@ services:
   app:
     depends_on:
       - activemq
-    image: flightsinfo
+    image: flightsinfo:v1
     build:
       context: .
-      args:
-        JAR_FILE: ./build/libs/flights-0.0.1-SNAPSHOT.jar
       dockerfile: Dockerfile
     environment:
       ACTIVE_MQ_BROKER_URL: tcp://activemq:61616
