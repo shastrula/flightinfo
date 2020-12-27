@@ -40,21 +40,6 @@ To add/update flight:
 - Use SOAPUI to load the following [soapui](soapui/flights-soapui-project.xml) 
 - Example [screenshot](soapui/SoapUI-ScreenShot.png)
 
-#How to test RabbitMQ Messages
-- Install Rabbit MQ Server using the [installer link](https://www.rabbitmq.com/download.html)
-- Start running rabbitmq server 
-- Login to rabbitmq server using URL: http://localhost:15672/#/queues/%2F/flight-queue
-    _**User/password: guest/guest**_ 
-- You will see the following Queue: [flight queue](rabbitmq/RabbitMQScreenshot.png)
-- Use the following URL to post messages in Postman: `
-http://localhost:9090/message/post`
-- Message example: 
-`{
-	"message":"Testing",
-	"count":1000
-}` 
-Here message is Testing and Number of messages is 1000.
-
 
 ### Reference Documentation
 For further reference, please consider the following sections:
@@ -68,7 +53,6 @@ For further reference, please consider the following sections:
 * [JDBC API](https://docs.spring.io/spring-boot/docs/2.2.0.RELEASE/reference/htmlsingle/#boot-features-sql)
 * [Spring Web Services](https://docs.spring.io/spring-boot/docs/2.2.0.RELEASE/reference/htmlsingle/#boot-features-webservices)
 * [Thymeleaf](https://docs.spring.io/spring-boot/docs/2.2.0.RELEASE/reference/htmlsingle/#boot-features-spring-mvc-template-engines)
-* [Spring for RabbitMQ](https://docs.spring.io/spring-boot/docs/2.2.0.RELEASE/reference/htmlsingle/#boot-features-amqp)
 
 ### Guides
 The following guides illustrate how to use some features concretely:
@@ -85,7 +69,7 @@ The following guides illustrate how to use some features concretely:
 * [Managing Transactions](https://spring.io/guides/gs/managing-transactions/)
 * [Producing a SOAP web service](https://spring.io/guides/gs/producing-web-service/)
 * [Handling Form Submission](https://spring.io/guides/gs/handling-form-submission/)
-* [Messaging with RabbitMQ](https://spring.io/guides/gs/messaging-rabbitmq/)
+* [Messaging with ActiveMQ](http://activemq.apache.org)
 
 ### Additional Links
 These additional references should also help you:
