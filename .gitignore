@@ -29,3 +29,10 @@ out/
 
 ### VS Code ###
 .vscode/
+bin/**
+src/main/.DS_Store
+temp/sfj
+temp/test.zip
+gradle/**
+gradlew
+/gradle/
